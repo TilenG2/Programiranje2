@@ -2,10 +2,79 @@ package Kvizi;
 
 public class Kviz1 {
     public static void main(String[] args) {
-        System.out.println(pretvoriVDesetisko("101010", 2));
-        System.out.println(pretvoriVDesetisko("FF", 16));
-        System.out.println(pretvoriVDesetisko("101021010", 2));
+        praDvojcek(10);
 
+    }
+
+    public static void praDvojcek(int n) {
+        for (int i = 2; i < n; i++) {
+            if (jePrastevilo(i - 2) && jePrastevilo(i))
+                System.out.printf("(%d, %d)\n", i - 2, i);
+        }
+    }
+
+    public static String izracunajRazliko(String prviCas, String drugiCas) {
+        String[] cas1 = prviCas.split(":");
+        String[] cas2 = drugiCas.split(":");
+        int prviCassec = Integer.parseInt(cas1[0]) * 3600 + Integer.parseInt(cas1[1]) * 60 + Integer.parseInt(cas1[2]);
+        int drugiCassec = Integer.parseInt(cas2[0]) * 3600 + Integer.parseInt(cas2[1]) * 60 + Integer.parseInt(cas2[2]);
+        return pretvoriSekunde(Math.abs(drugiCassec - prviCassec));
+    }
+
+    public static int[] presek(int[] tabela1, int[] tabela2) {
+        String stevila = "";
+        for (int i = 0; i < tabela1.length; i++) {
+            for (int j = 0; j < tabela2.length; j++) {
+                if (tabela1[i] == tabela2[j] && !stevila.contains(tabela1[i] + " "))
+                    stevila += tabela1[i] + " ";
+            }
+        }
+        String[] tab = stevila.trim().split(" ");
+        int[] interesct = new int[tab.length];
+        for (int i = 0; i < interesct.length; i++) {
+            interesct[i] = Integer.parseInt(tab[i]);
+        }
+        return interesct;
+    }
+
+    public static int[] unija(int[] tabela1, int[] tabela2) {
+        int[] union = new int[tabela1.length + tabela2.length];
+        int indexunion = 0;
+        for (int i = 0; i < tabela1.length; i++) {
+            union[indexunion] = tabela1[i];
+            indexunion++;
+        }
+        for (int i = 0; i < tabela2.length; i++) {
+            union[indexunion] = tabela2[i];
+            indexunion++;
+        }
+        return union;
+    }
+
+    public static void pitagoroviTrojcki(int x) {
+        for (int a = 1; a <= x; a++) {
+            for (int b = a; b <= x; b++) {
+                for (int c = b; c <= x; c++) {
+                    if (Math.pow(a, 2) + Math.pow(b, 2) == Math.pow(c, 2))
+                        System.out.printf("%d %d %d\n", a, b, c);
+                }
+            }
+        }
+    }
+
+    public static int vsotaPrvih(int n) {
+        int vsota = 0, stevilo = 2, stevec = 0;
+        while (true) {
+            if (jePrastevilo(stevilo)) {
+                vsota += stevilo;
+                stevilo++;
+                stevec++;
+            } else
+                stevilo++;
+            if (!(stevec < n))
+                break;
+        }
+        return vsota;
     }
 
     public static String pretvoriVDesetisko(String n, int b) {
@@ -89,7 +158,7 @@ public class Kviz1 {
     public static boolean jePrastevilo(int n) {
         if (n < 2)
             return false;
-        for (int i = 2; i < n / 2; i++)
+        for (int i = 2; i <= n / 2; i++)
             if (n % i == 0)
                 return false;
         return true;
