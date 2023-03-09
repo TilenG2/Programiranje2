@@ -2,8 +2,32 @@ package Kvizi;
 
 public class Kviz1 {
     public static void main(String[] args) {
-        praDvojcek(10);
+        veckratnikDelitelj(12, -24);
+        veckratnikDelitelj(12, 8);
+        veckratnikDelitelj(44, 0);
 
+    }
+
+    public static void veckratnikDelitelj(int a, int b) {
+        if (a == 0 || b == 0)
+            System.out.println("Napaka: obe števili morata biti različni od nič.");
+        else {
+            a = Math.abs(a);
+            b = Math.abs(b);
+            System.out.printf("Največji skupni delitelj je %d.\n", gcd(a, b));
+            System.out.printf("Najmanjši skupni večkratnik je %d.\n", lcm(a, b));
+
+        }
+    }
+
+    public static int gcd(int a, int b) {
+        if (a == 0)
+            return b;
+        return gcd(b % a, a);
+    }
+
+    public static int lcm(int a, int b) {
+        return (a * b) / gcd(a, b);
     }
 
     public static void praDvojcek(int n) {
