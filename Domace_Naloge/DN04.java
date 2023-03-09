@@ -1,6 +1,6 @@
 public class DN04 {
     public static void main(String[] args) throws Exception {
-        // args = new String[] { "010000010100001001000011" };
+        args = new String[] { "010000010100001001000011" };
 
         String message = toAsci(args[0]);
         System.out.println(message);
@@ -15,13 +15,13 @@ public class DN04 {
         String message = "";
         int pow, stevilo, character;
         for (String string : chars) {
-            pow = 0;
             character = 0;
             stevilo = Integer.parseInt(string);
+            pow = 1;
             while (stevilo != 0) {
-                character += (stevilo % 10) * Math.pow(2, pow);
+                character += (stevilo % 10) * pow;
                 stevilo = stevilo / 10;
-                pow++;
+                pow = pow << 1;
             }
             message += (char) character;
         }
