@@ -1,6 +1,6 @@
 public class DN04 {
     public static void main(String[] args) throws Exception {
-        args = new String[] { "010000010100001001000011" };
+        // args = new String[] { "010000010100001001000011" };
 
         String message = toAsci(args[0]);
         System.out.println(message);
