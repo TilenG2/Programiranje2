@@ -2,12 +2,21 @@ package Vaje;
 
 public class Vaje3 {
     public static void main(String[] args) {
-        izpisi64bit(new long[] { 0b1111111101000001010000010100100001111000010010000100000011100000L,
-                0b0011000001010000000100000001000000010000000100000001000011111111L });
+        izpisi64bit(4342219536296657468L);
 
+        izpisi64bit(1746410238858002085L);
+
+        izpisi64bit(-36525672788885761L);
     }
 
-    private static final char crnaPika = '\u2B1B'; // črn kvadratek
+    public static void izpisiBit(String niz, int bit) {
+        if (bit == 4)
+            izpisi16bit(niz);
+        else
+            izpisi64bit(niz);
+    }
+
+    private static final char crnaPika = '⬛'; // črn kvadratek
     private static final char belaPika = '\u2B1C'; // prazen (bel) kvadratek
 
     private static final char[] abeceda = {
@@ -56,7 +65,7 @@ public class Vaje3 {
     };
 
     public static void izpisi16bit(short znak16b) {
-        int izpisani_bit = 1 << 15;
+        int izpisani_bit = 0b1 << 15;
         int skok_v_novo_vrstico = 1;
         while (izpisani_bit > 0) {
             if ((znak16b & izpisani_bit) != 0)
@@ -82,7 +91,6 @@ public class Vaje3 {
                     else
                         System.out.print(belaPika);
                     smol_space++;
-
                 }
                 izpisani_bit = izpisani_bit << 4;
                 smol_space = 0;
@@ -99,7 +107,6 @@ public class Vaje3 {
         char crka;
         for (int i = 0; i < crke.length; i++) {
             crka = niz.charAt(i);
-            System.out.println(crka);
             for (int j = 0; j < abeceda.length; j++) {
                 if (abeceda[j] == crka) {
                     crke[i] = (short) kodeZnakov16bit[j];
@@ -151,8 +158,7 @@ public class Vaje3 {
     };
 
     public static void izpisi64bit(long kodaZnaka) {
-        long izpisani_bit = 1;
-        izpisani_bit = izpisani_bit << 63;
+        long izpisani_bit = 1L << 63;
         int skok_v_novo_vrstico = 1;
         while (izpisani_bit != 0) {
 
@@ -168,20 +174,23 @@ public class Vaje3 {
     }
 
     public static void izpisi64bit(long[] nizZnakov) {
-        long izpisani_bit = 1 << 64;
+        long izpisani_bit = 1L << 63;
         int smol_space = 0;
         for (int vrstica = 1; vrstica <= 8; vrstica++) {
             for (long znak64b : nizZnakov) {
                 while (smol_space != 8) {
-                    izpisani_bit = izpisani_bit >> 1;
+
                     if ((znak64b & izpisani_bit) != 0)
                         System.out.print(crnaPika);
                     else
                         System.out.print(belaPika);
                     smol_space++;
-
+                    izpisani_bit = Math.abs(izpisani_bit) >> 1;
                 }
-                izpisani_bit = izpisani_bit << 8;
+                if (izpisani_bit == 0)
+                    izpisani_bit = 1L << 7;
+                else
+                    izpisani_bit = izpisani_bit << 8;
                 smol_space = 0;
                 System.out.print(belaPika);
             }
@@ -191,19 +200,18 @@ public class Vaje3 {
     }
 
     public static void izpisi64bit(String niz) {
-        short[] crke = new short[niz.length()];
+        long[] crke = new long[niz.length()];
         niz = niz.toUpperCase();
         char crka;
         for (int i = 0; i < crke.length; i++) {
             crka = niz.charAt(i);
-            System.out.println(crka);
             for (int j = 0; j < abeceda.length; j++) {
                 if (abeceda[j] == crka) {
-                    crke[i] = (short) kodeZnakov16bit[j];
+                    crke[i] = kodeZnakov64bit[j];
                     break;
                 }
             }
         }
-        izpisi16bit(crke);
+        izpisi64bit(crke);
     }
 }
