@@ -2,11 +2,6 @@ package Vaje;
 
 public class Vaje3 {
     public static void main(String[] args) {
-        izpisi64bit(4342219536296657468L);
-
-        izpisi64bit(1746410238858002085L);
-
-        izpisi64bit(-36525672788885761L);
     }
 
     public static void izpisiBit(String niz, int bit) {
