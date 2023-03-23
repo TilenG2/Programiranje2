@@ -40,7 +40,6 @@ public class Kviz2 {
             bBin = bBin > 0 ? --bBin : bBin;
         }
         return carry == '0' ? sestevek : carry + sestevek;
-
     }
 
     static double koren(int x, int d) {
