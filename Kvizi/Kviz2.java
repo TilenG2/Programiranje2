@@ -2,10 +2,48 @@ package Kvizi;
 
 public class Kviz2 {
     public static void main(String[] args) {
+        System.out.println(prevod("Napaka"));
+        System.out.println(prevod("Popamlapad pripahapajapa"));
+        System.out.println(prevod("Kappa"));
 
-        System.out.println(binarnoSestej("10", "11"));
-        System.out.println(binarnoSestej("10011010010", "1000011100001"));
+    }
 
+    static boolean jePapajscina(String niz) {
+        return !(niz.replaceAll("pa", "--").replaceAll("[aeiou]", "_").replaceAll("_--", "").replaceAll("-", "_")
+                .indexOf("_") != -1);
+    }
+
+    static String prevod(String niz) {
+        if (jePapajscina(niz))
+            niz = niz.replaceAll("pa", "");
+        else {
+            niz = niz.replaceAll("a", "apa");
+            niz = niz.replaceAll("e", "epa");
+            niz = niz.replaceAll("i", "ipa");
+            niz = niz.replaceAll("o", "opa");
+            niz = niz.replaceAll("u", "upa");
+        }
+        return niz;
+    }
+
+    static int vsotaSkupnihCifer(int a, int b) {
+        int[] stevila = new int[10];
+        int stevka = 0;
+        while (a > 0) {
+            stevka = a % 10;
+            stevila[stevka] = 1;
+            a = a / 10;
+        }
+        while (b > 0) {
+            stevka = b % 10;
+            stevila[stevka] = stevila[stevka] >= 1 ? 2 : 0;
+            b = b / 10;
+        }
+        int sestevek = 0;
+        for (int i = 0; i < stevila.length; i++) {
+            sestevek += stevila[i] == 2 ? i : 0;
+        }
+        return sestevek;
     }
 
     static String binarnoSestej(String s, String b) {
