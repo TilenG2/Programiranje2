@@ -110,6 +110,8 @@ public class DN07 {
         if (dat2.exists() && dat2.length() == 0) {
             while (sc.hasNextLine())
                 pw.println(sc.nextLine());
+        } else {
+            System.out.println("Napaka pri kopiranju, datoteka že vsebuje besedilo");
         }
         pw.close();
         sc.close();
