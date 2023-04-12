@@ -50,7 +50,7 @@ public class DN07 {
         File dat;
         double size;
         for (String datoteka : datoteke) {
-            dat = new File(f.toString() + "/" + datoteka);
+            dat = new File(f.toString(), datoteka);
             size = dat.length();
             size = size / 1000;
             System.out.printf("%20s%20s%10.3f\n", datoteka, dat.isDirectory() ? "Mapa" : "Datoteka",
@@ -87,7 +87,7 @@ public class DN07 {
         File dat;
         Scanner sc;
         for (String datoteka : datoteke) {
-            dat = new File(f.toString() + "/" + datoteka);
+            dat = new File(f.toString(), datoteka);
             if (dat.isFile()) {
                 if (isTxtFile(datoteka)) {
                     sc = new Scanner(dat);
@@ -103,8 +103,8 @@ public class DN07 {
     }
 
     public static void kopiraj_datoteko(String vhodnaDatoteka, String izhodnaDatoteka) throws Exception {
-        File dat1 = new File(file_dir.toString() + "/" + vhodnaDatoteka);
-        File dat2 = new File(file_dir.toString() + "/" + izhodnaDatoteka);
+        File dat1 = new File(file_dir.toString(), vhodnaDatoteka);
+        File dat2 = new File(file_dir.toString(), izhodnaDatoteka);
         Scanner sc = new Scanner(dat1);
         PrintWriter pw = new PrintWriter(dat2);
         if (dat2.exists() && dat2.length() == 0) {
@@ -124,7 +124,7 @@ public class DN07 {
         boolean noFiles = true;
         PrintWriter pw = new PrintWriter(direktorij.toString() + "/" + izhodnaDatoteka);
         for (String datoteka : datoteke) {
-            dat = new File(direktorij.toString() + "/" + datoteka);
+            dat = new File(direktorij.toString(), datoteka);
             if (dat.isFile()) {
                 if (isTxtFile(datoteka)) {
                     sc = new Scanner(dat);
@@ -147,7 +147,7 @@ public class DN07 {
         String vrstica;
         int countVrstice;
         for (String datoteka : datoteke) {
-            dat = new File(f.toString() + "/" + datoteka);
+            dat = new File(f.toString(), datoteka);
             if (dat.isFile() && isTxtFile(datoteka)) {
                 sc = new Scanner(dat);
                 countVrstice = 1;
@@ -171,7 +171,7 @@ public class DN07 {
         System.out.println("    ".repeat(depth - 1) + "/" + f.getName());
         File dat;
         for (String datoteka : datoteke) {
-            dat = new File(f.toString() + "/" + datoteka);
+            dat = new File(f.toString(), datoteka);
             if (dat.isDirectory()) {
                 drevoRek(dat, depth + 1);
             } else {
@@ -188,7 +188,7 @@ public class DN07 {
         int cifra, vsota;
         boolean izraz;
         for (String datoteka : datoteke) {
-            dat = new File(f.toString() + "/" + datoteka);
+            dat = new File(f.toString(), datoteka);
             if (dat.isFile() && isTxtFile(datoteka)) {
                 sc = new Scanner(dat);
                 System.out.println(datoteka);
