@@ -246,7 +246,7 @@ public class DN07 {
             if (dat.isDirectory())
                 datoteke.addAll(directoryDig(dat));
             else
-                datoteke.add(new Datoteka(datoteka, (int) dat.length()));
+                datoteke.add(new Datoteka(datoteka, dat.length()));
         }
         return datoteke;
     }
@@ -259,11 +259,6 @@ class Datoteka {
     public Datoteka() {
         this.name = null;
         this.size = 0;
-    }
-
-    public Datoteka(String name, int size) {
-        this.name = name;
-        this.size = size;
     }
 
     public Datoteka(String name, long size) {
