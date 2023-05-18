@@ -1,8 +1,12 @@
+import java.util.TreeSet;
 
 public class Test {
     public static void main(String[] args) {
-        for (int i = 10; i >= 1; i--) {
-            System.out.println(i);
+        TreeSet<Integer> neki = new TreeSet<>();
+        neki.add(1);
+        for (Integer integer : neki) {
+            neki.add(++integer);
         }
+        System.out.println(neki);
     }
 }
