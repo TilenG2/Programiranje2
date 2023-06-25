@@ -345,6 +345,16 @@ abstract class Vlak implements Comparable<Vlak> {
         return casPotovanja;
     }
 
+    @Override
+    public int compareTo(Vlak v) {
+        double cena = v.cenaVoznje() - this.cenaVoznje();
+        if (cena > 0)
+            return 1;
+        if (cena < 0)
+            return -1;
+        return 0;
+    }
+
 }
 
 class RegionalniVlak extends Vlak {
@@ -363,16 +373,6 @@ class RegionalniVlak extends Vlak {
     @Override
     String opis() {
         return String.format("%s (regionalni) %s -- %s", getId(), getOrigin(), getDestination());
-    }
-
-    @Override
-    public int compareTo(Vlak v) {
-        double cena = v.cenaVoznje() - this.cenaVoznje();
-        if (cena > 0)
-            return 1;
-        if (cena < 0)
-            return -1;
-        return 0;
     }
 
 }
@@ -397,13 +397,4 @@ class EkspresniVlak extends Vlak {
         return String.format("%s (ekspresni) %s -- %s", getId(), getOrigin(), getDestination());
     }
 
-    @Override
-    public int compareTo(Vlak v) {
-        double cena = v.cenaVoznje() - this.cenaVoznje();
-        if (cena > 0)
-            return 1;
-        if (cena < 0)
-            return -1;
-        return 0;
-    }
 }
